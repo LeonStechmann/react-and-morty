@@ -25,11 +25,11 @@ const NavigationContainer = styled.nav`
   width: 100%;
   position: fixed;
   bottom: 0;
+  background-color: white;
   ul {
     list-style: none;
     display: flex;
     justify-content: space-between;
     padding: 1em;
-    gap: 10px;
   }
 `;
