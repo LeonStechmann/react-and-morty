@@ -1,35 +1,22 @@
 import "./App.css";
+import Header from "./components/header/Header";
+import Card from "./components/card/Card";
+import Navigation from "./components/navigation/Navigation";
+import styled from "styled-components";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header>React and Morty</header>
-      <div className="Card">
-        <img
-          src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
-          alt="Error upsi daisy"
-        />
-        <h2>Morty Smith</h2>
-        <button>show more</button>
-      </div>
-      <nav>
-        <ul>
-          <li>
-            <div>Ph1</div>
-          </li>
-          <li>
-            <div>Ph2</div>
-          </li>
-          <li>
-            <div>Ph3</div>
-          </li>
-          <li>
-            <div>Ph4</div>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <AppContainer>
+      <Header />
+      <Card />
+      <Navigation />
+    </AppContainer>
   );
 }
 
-export default App;
+const AppContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+`;
