@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
-export default function Card() {
+export default function Card({ characters }) {
   return (
     <CardContainer>
-      <img
-        src="https://rickandmortyapi.com/api/character/avatar/2.jpeg"
-        alt="Error upsi daisy"
-      />
-      <h2>Morty Smith</h2>
-      <button>show more</button>
+      {characters.map((character) => {
+        return (
+          <>
+            <img src={character.image} alt={character.name} />
+            <h2>{character.name}</h2>
+            <button>show more</button>
+          </>
+        );
+      })}
     </CardContainer>
   );
 }
@@ -17,11 +20,14 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px;
+  margin: 30px auto;
 
   h2 {
     text-align: center;
     padding: 0;
     margin: 0;
+  }
+  button {
+    margin-bottom: 15px;
   }
 `;
