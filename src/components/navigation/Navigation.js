@@ -1,22 +1,25 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <ul>
-        <li>
-          <a href="">Homepage</a>
-        </li>
-        <li>
-          <a href="">Favorite</a>
-        </li>
-        <li>
-          <a href="">Random</a>
-        </li>
-        <li>
-          <a href="">Other</a>
-        </li>
-      </ul>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Homepage</Link>
+          </li>
+          <li>
+            <Link to="/Favorite">Favorite</Link>
+          </li>
+          <li>
+            <Link to="/Other">Other</Link>
+          </li>
+          <li>
+            <Link to="/Random">Random</Link>
+          </li>
+        </ul>
+      </nav>
     </NavigationContainer>
   );
 }
