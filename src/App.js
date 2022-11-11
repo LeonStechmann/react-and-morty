@@ -1,9 +1,15 @@
 import "./App.css";
 import Header from "./components/header/Header";
-import Card from "./components/card/Card";
 import Navigation from "./components/navigation/Navigation";
 import styled from "styled-components";
+//Router: which page
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Home from "./pages/Home";
+import Character from "./pages/Character";
+import Other from "./pages/Other";
+import Random from "./pages/Random";
+import Favorite from "./pages/Favorite";
 
 export default function App() {
   const [characters, setCharacters] = useState([]);
@@ -16,11 +22,22 @@ export default function App() {
     }
     fetchData();
   }, []);
+
   return (
     <AppContainer>
       <Header />
-      <Card characters={characters} />
       <Navigation />
+      <Routes>
+        <Route path="/" element={<Home characters={characters} />} />
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/random" element={<Random />} />
+        <Route path="/other" element={<Other />} />
+        <Route
+          path={"/character/:characterId"}
+          element={<Character characters={characters} />}
+        />
+        <Route path="*" element={<h1>Error 404 Page not Found</h1>} />
+      </Routes>
     </AppContainer>
   );
 }
