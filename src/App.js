@@ -2,7 +2,6 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Navigation from "./components/navigation/Navigation";
 import styled from "styled-components";
-//Router: which page
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
@@ -45,7 +44,15 @@ export default function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home characters={characters} />} />
-        <Route path="/favorite" element={<Favorite />} />
+        <Route
+          path="/favorite"
+          element={
+            <Favorite
+              handleToggleFavorite={handleToggleFavorite}
+              favorite={favorite}
+            />
+          }
+        />
         <Route path="/random" element={<Random />} />
         <Route path="/other" element={<Other />} />
         <Route
