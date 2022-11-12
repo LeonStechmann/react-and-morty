@@ -28,16 +28,19 @@ const CardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 30px auto;
+
   article {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   h2 {
     text-align: center;
     padding: 0;
     margin: 0;
   }
+
   button {
     margin-bottom: 15px;
   }
