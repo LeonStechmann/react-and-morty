@@ -13,6 +13,22 @@ import Favorite from "./pages/Favorite";
 
 export default function App() {
   const [characters, setCharacters] = useState([]);
+  const [favorite, setFavorite] = useState(() =>
+    JSON.parse(localStorage.getItem("favourites") || "[]")
+  );
+
+  function handleToggleFavorite(id) {
+    if (favorite.includes(id)) {
+      const newFavorite = favorite.filter((favID) => favID !== id);
+      setFavorite(newFavorite);
+    } else {
+      setFavorite([...favorite, id]);
+    }
+  }
+
+  useEffect(() => {
+    localStorage.setItem("favourites", JSON.stringify(favorite));
+  }, [favorite]);
 
   useEffect(() => {
     async function fetchData() {
@@ -34,7 +50,13 @@ export default function App() {
         <Route path="/other" element={<Other />} />
         <Route
           path={"/character/:characterId"}
-          element={<Character characters={characters} />}
+          element={
+            <Character
+              favorite={favorite}
+              handleToggleFavorite={handleToggleFavorite}
+              characters={characters}
+            />
+          }
         />
         <Route path="*" element={<h1>Error 404 Page not Found</h1>} />
       </Routes>
