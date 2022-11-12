@@ -1,19 +1,30 @@
 import styled from "styled-components";
 import { useParams } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Character({ characters }) {
+export default function Character({
+  characters,
+  favorite,
+  handleToggleFavorite,
+}) {
   const [showMore, setShowMore] = useState(false);
+
   let { characterId } = useParams();
 
   const handleToggleMore = () => {
     setShowMore(!showMore);
   };
+
   const result = characters.find(({ id }) => id === Number(characterId));
 
   return (
     <CharactersContainer>
-      <button>Save as favorite</button>
+      <StyledButton
+        isFavourite={favorite.includes(characterId)}
+        onClick={() => handleToggleFavorite(characterId)}
+      >
+        Save as favorite
+      </StyledButton>
       <img src={result.image} alt={result.name} />
       <button onClick={handleToggleMore}>show more</button>
       <MoreInformation showMore={showMore}>
@@ -33,6 +44,11 @@ const CharactersContainer = styled.div`
   align-items: center;
   margin: 30px auto;
 `;
+
+const StyledButton = styled.button`
+  ${(props) => props.isFavourite && "background-color: green"};
+`;
+
 const MoreInformation = styled.div`
   ${(props) => !props.showMore && "display: none"};
   ul {
