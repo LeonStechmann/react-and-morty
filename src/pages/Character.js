@@ -1,21 +1,31 @@
 import styled from "styled-components";
-import { useParams } from "react-router";
+import { json, useParams } from "react-router";
 import { useState, useEffect } from "react";
 
-export default function Character({
-  characters,
-  favorite,
-  handleToggleFavorite,
-}) {
+export default function Character({ favorite, handleToggleFavorite }) {
   const [showMore, setShowMore] = useState(false);
-
+  const [character, setCharacter] = useState({});
   let { characterId } = useParams();
 
   const handleToggleMore = () => {
     setShowMore(!showMore);
   };
 
-  const result = characters.find(({ id }) => id === Number(characterId));
+  useEffect(() => {
+    async function fetchCharacter() {
+      const response = await fetch(
+        "https://rickandmortyapi.com/api/character/" + characterId
+      );
+      const data = await response.json();
+      setCharacter(data);
+      console.log(data);
+    }
+    fetchCharacter();
+
+    // fetch("https://rickandmortyapi.com/api/character/" + characterId).then(
+    //   (response) => response.json().then((data) => setCharacter(data))
+    // );
+  }, []);
 
   return (
     <CharactersContainer>
@@ -25,13 +35,13 @@ export default function Character({
       >
         Save as favorite
       </StyledButton>
-      <img src={result.image} alt={result.name} />
+      <img src={character.image} alt={character.name} />
       <button onClick={handleToggleMore}>show more</button>
       <MoreInformation showMore={showMore}>
         <ul>
-          <li>species: {result.species}</li>
-          <li>gender: {result.gender}</li>
-          <li>status: {result.status}</li>
+          <li>species: {character.species}</li>
+          <li>gender: {character.gender}</li>
+          <li>status: {character.status}</li>
         </ul>
       </MoreInformation>
     </CharactersContainer>

@@ -50,6 +50,7 @@ export default function App() {
             <Favorite
               handleToggleFavorite={handleToggleFavorite}
               favorite={favorite}
+              setCharacters={setCharacters}
             />
           }
         />
