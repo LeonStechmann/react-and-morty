@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { json, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 
 export default function Character({ favorite, handleToggleFavorite }) {
@@ -18,13 +18,8 @@ export default function Character({ favorite, handleToggleFavorite }) {
       );
       const data = await response.json();
       setCharacter(data);
-      console.log(data);
     }
     fetchCharacter();
-
-    // fetch("https://rickandmortyapi.com/api/character/" + characterId).then(
-    //   (response) => response.json().then((data) => setCharacter(data))
-    // );
   }, []);
 
   return (
