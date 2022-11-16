@@ -9,6 +9,8 @@ import Character from "./pages/Character";
 import Other from "./pages/Other";
 import Random from "./pages/Random";
 import Favorite from "./pages/Favorite";
+import "./fonts/get_schwifty.ttf";
+import background from "./images/BG.jpg";
 
 export default function App() {
   const [characters, setCharacters] = useState([]);
@@ -77,4 +79,7 @@ const AppContainer = styled.main`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  background-image: url(${background});
+  background-attachment: fixed;
+  background-size: cover;
 `;

@@ -7,15 +7,16 @@ export default function Card({ characters }) {
       {characters.map((character) => {
         return (
           <article key={character.id}>
-            <img src={character.image} alt={character.name} />
-            <h2>{character.name}</h2>
             <Link
               to={{
                 pathname: "/character/" + character.id,
               }}
             >
-              <button>show more</button>
+              <img src={character.image} alt={character.name} />
+
+              {/* <button>show more</button> */}
             </Link>
+            <h2>{character.name}</h2>
           </article>
         );
       })}
@@ -25,23 +26,33 @@ export default function Card({ characters }) {
 
 const CardContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 100px;
+  justify-content: center;
   align-items: center;
-  margin: 30px auto;
+  margin: 30px 0 100px 0;
 
   article {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+  img {
+    border-radius: 50px;
+    cursor: pointer;
 
+    :hover {
+      transition: ease-in-out 0.3s;
+      filter: blur(3px);
+      transform: scale(104%);
+    }
+  }
   h2 {
     text-align: center;
     padding: 0;
     margin: 0;
-  }
-
-  button {
-    margin-bottom: 15px;
+    color: white;
+    margin: 20px 0 20px 0;
   }
 `;

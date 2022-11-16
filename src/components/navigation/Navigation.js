@@ -7,16 +7,24 @@ export default function Navigation() {
       <nav>
         <ul>
           <li>
-            <Link to="/">Homepage</Link>
+            <Link to="/">
+              <span>Homepage</span>
+            </Link>
           </li>
           <li>
-            <Link to="/Favorite">Favorite</Link>
+            <Link to="/Favorite">
+              <span>Favorite</span>
+            </Link>
           </li>
           <li>
-            <Link to="/Other">Other</Link>
+            <Link to="/Random">
+              <span>Random</span>
+            </Link>
           </li>
           <li>
-            <Link to="/Random">Random</Link>
+            <Link to="/Other">
+              <span>Other</span>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -28,11 +36,14 @@ const NavigationContainer = styled.nav`
   width: 100%;
   position: fixed;
   bottom: 0;
-  background-color: white;
+
   ul {
     list-style: none;
     display: flex;
     justify-content: space-between;
     padding: 1em;
+  }
+  span {
+    color: white;
   }
 `;
